@@ -66,7 +66,7 @@ class Markup(text_type):
     __slots__ = ()
 
     def __new__(cls, base=u'', encoding=None, errors='strict'):
-        if hasattr(base, '__html__'):
+        if hasattr(base, '__html__') and callable(base.__html__):
             base = base.__html__()
         if encoding is None:
             return text_type.__new__(cls, base)
